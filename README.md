@@ -10,3 +10,17 @@ pip install markdown       # Markdown support for the browsable API.
 
 pip install django-filter  # Filtering support
 
+#Rodar projeto
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py runserver
+
+
+#Acessar endpoints
+
+Abrindo o diretorio no navegador tera acesso a uma interface para interação com os endpoints
+podendo realizar o CRUD de todos os endpoints
+
