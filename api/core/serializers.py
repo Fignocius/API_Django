@@ -25,4 +25,22 @@ class ProdutoSerializer(serializers.ModelSerializer):
 class ChamadoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chamado
-        fields =['funcionario', 'descricao']
+        fields =['id', 'funcionario', 'descricao', 'tipoServico', 'produtos', 'resolvido']
+
+
+class TipoServicoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoServico
+        fields = ['nome', 'prioridade']
+
+
+class ResolveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Resolve
+        fields = ['chamado','funcionario', 'descricao', 'data_resolucao', 'data_vinculo']
+
+
+class UsadosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Usados
+        fields = ['id', 'chamado', 'produtos', 'quantidade']

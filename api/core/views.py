@@ -22,3 +22,18 @@ class ProdutosViewSet(viewsets.ModelViewSet):
 class ChamadosViewSet(viewsets.ModelViewSet):
     queryset = Chamado.objects.all()
     serializer_class = ChamadoSerializer
+
+
+class TipoServicosViewSet(viewsets.ModelViewSet):
+    queryset = TipoServico.objects.all()
+    serializer_class = TipoServicoSerializer
+
+
+class ResolveViewSet(viewsets.ModelViewSet):
+    queryset = Resolve.objects.all()
+    serializer_class = ResolveSerializer
+
+
+class UsadosViewSet(viewsets.ModelViewSet):
+    queryset = Usados.objects.all()
+    serializer_class = UsadosSerializer

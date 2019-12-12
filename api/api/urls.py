@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core.views import SetorViewSet, FuncionariosViewSet, ProdutosViewSet, ChamadosViewSet
+from core.views import \
+    SetorViewSet,\
+    FuncionariosViewSet,\
+    ProdutosViewSet,\
+    ChamadosViewSet,\
+    TipoServicosViewSet,\
+    ResolveViewSet,\
+    UsadosViewSet
+
 from rest_framework import routers
 
 
@@ -24,6 +32,9 @@ router.register(r'setores', SetorViewSet)
 router.register(r'funcionarios', FuncionariosViewSet)
 router.register(r'produtos', ProdutosViewSet)
 router.register(r'chamados', ChamadosViewSet)
+router.register(r'tipo-servicos', TipoServicosViewSet)
+router.register(r'resolve', ResolveViewSet)
+router.register(r'produtos-usados', UsadosViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -36,8 +36,12 @@ class Produto(models.Model):
         return self.nome
 
 
+PRIORIDADES = (('ALTA', 'Alta'), ('MEDIA', 'Media'), ('BAIXA', 'Baixa'))
+
+
 class TipoServico(models.Model):
     nome = models.CharField(max_length=50, primary_key=True)
+    prioridade = models.CharField(max_length=20, choices=PRIORIDADES, default='BAIXA')
 
 
 class Chamado(models.Model):
@@ -50,3 +54,39 @@ class Chamado(models.Model):
         null=True
     )
     descricao = models.TextField(null=False)
+    tipoServico = models.ForeignKey(
+        TipoServico,
+        on_delete=models.CASCADE,
+        related_name='chamados',
+        to_field='nome',
+        blank=True,
+        null=True
+    )
+
+
+class Resolve(models.Model):
+    chamado = models.ForeignKey(
+    Chamado,
+        on_delete=models.CASCADE,
+        related_name='resolvido'
+    )
+    funcionario = models.ForeignKey(
+        Funcionario,
+        on_delete=models.CASCADE,
+        related_name='resolvido'
+    )
+    descricao = models.TextField(blank=False, null=False)
+    data_resolucao = models.DateTimeField()
+    data_vinculo = models.DateTimeField()
+
+
+class Usados(models.Model):
+    chamado = models.ManyToManyField(
+        Chamado,
+        related_name='produtos'
+    )
+    produtos = models.ManyToManyField(
+        Produto,
+        related_name='produtos'
+    )
+    quantidade = models.IntegerField(default=1)
